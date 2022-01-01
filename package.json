@@ -1,0 +1,42 @@
+{
+  "name": "quiz-backend",
+  "version": "1.0.0",
+  "description": "Quiz Backend",
+  "main": "quiz.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migration": "sequelize-automate -c sequelize-automate.config.json",
+    "start": "nodemon quiz.js"
+  },
+  "keywords": [
+    "socket",
+    "chat",
+    "quiz"
+  ],
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "microtime": "^3.0.0",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.7",
+    "mongoose-paginate": "^5.0.3",
+    "passport": "^0.4.1",
+    "passport-anonymous": "^1.0.1",
+    "passport-http-bearer": "^1.0.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9",
+    "socket.io": "^3.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "author": "Aabir Hussain",
+  "license": "ISC",
+  "homepage": "https://Aabir1@bitbucket.org/Aabir1/analytics-backend.git#readme"
+}
