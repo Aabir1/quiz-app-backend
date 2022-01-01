@@ -5,8 +5,24 @@ const PaginationHelper = require('../helpers/PaginationHelper');
 const ErrorHelper = require('../helpers/ErrorHelper');
 const QuestionModel = require('../models/questions');
 
+//default limit of sending back response
 const DEFAULT_LIMIT = 12;
 
+/**
+ * save a quiz with validation
+ *
+ * @method POST
+ *
+ * @param {String} question
+ * @param {Number} quiz
+ * @param {String} optionOne
+ * @param {String} optionTwo
+ * @param {String} optionThree
+ *
+ * @returns {Object} resParams
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 QuestionController.save = async (req, res) => {
     const params = { ...resParams };
 
@@ -25,6 +41,17 @@ QuestionController.save = async (req, res) => {
     }
 }
 
+/**
+ * Get all question list with quiz id
+ *
+ * @method POST
+ *
+ * @param {String} quiz
+ *
+ * @returns {Object} resParams
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 QuestionController.getByQuiz = (req, res) => {
     const params = { ...resParams };
 
@@ -34,8 +61,6 @@ QuestionController.getByQuiz = (req, res) => {
     QuestionModel.paginate({
         quiz: req.query.quiz
     }, {
-        limit: limit,
-        offset: offset,
         sort: { createdAt: -1 },
         lean: true
     }, (err, result) => {
@@ -56,7 +81,18 @@ QuestionController.getByQuiz = (req, res) => {
 }
 
 
-
+/**
+ * Get all question list with pagination
+ *
+ * @method POST
+ *
+ * @param {Number} offset
+ * @param {Number} limit
+ *
+ * @returns {Object} resParams
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 QuestionController.getAll = (req, res) => {
     const params = { ...resParams };
 

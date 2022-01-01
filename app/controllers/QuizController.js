@@ -4,8 +4,20 @@ const resParams = require('../config/params');
 const PaginationHelper = require('../helpers/PaginationHelper');
 const QuizModel = require('../models/quiz');
 
+//default limit of sending back response
 const DEFAULT_LIMIT = 12;
 
+/**
+ * save a quiz with validation
+ *
+ * @method POST
+ *
+ * @param {String} title
+ *
+ * @returns {Object} resParams
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 QuizController.save = async (req, res) => {
     const params = { ...resParams };
 
@@ -24,7 +36,18 @@ QuizController.save = async (req, res) => {
     }
 }
 
-
+/**
+ * Get all quiz list with pagination
+ *
+ * @method POST
+ *
+ * @param {Number} offset
+ * @param {Number} limit
+ *
+ * @returns {Object} resParams
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 QuizController.getAll = (req, res) => {
     const params = { ...resParams };
 

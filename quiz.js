@@ -20,6 +20,13 @@ app.use(cookieParser());
 app.use(cors());
 app.use(compression());
 
+
+/**
+ * basic authentication with static token and
+ * all urls with complete business logics.
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 app.use(config.APP.BASE_PATH, async (req, res, next) => {
     const params = { ...resParam };
     const result = await Authenticator.isAuthorized(req);

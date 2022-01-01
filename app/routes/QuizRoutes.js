@@ -1,4 +1,10 @@
 const express = require('express');
+
+/**
+ * contains all quiz related routes
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
 const QuizRoutes = express.Router();
 
 const QuizController = require('../controllers/QuizController');
