@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 const ArrayHelper = require('../helpers/ArrayHelper');
 const ErrorHelper = require('../helpers/ErrorHelper');
+const DateTimeHelper = require('../helpers/DateTimeHelper');
 
 mongoose.connect(config.DATABASE.url, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -43,14 +44,15 @@ AnswersModel.attachAnswers = async (data) => {
   if (data) {
     try {
       const ids = ArrayHelper.getColumn(data, 'id');
-      let dataAnswers = await AnswersModel.find({ question: ids });
+      let dataAnswers = await AnswersModel.find({ question: ids }).lean();
+
+      dataAnswers = DateTimeHelper.setDisplayTime(dataAnswers, 'createdAt');
 
       dataAnswers = ArrayHelper.index(dataAnswers, 'question');
 
       data.map((single, key) => {
         if (dataAnswers && dataAnswers[single.id]) {
           data[key].set('answer', dataAnswers[single.id], { strict: false });
-
         } else {
           data[key].set('answer', false, { strict: false });
         }
