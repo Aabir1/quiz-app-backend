@@ -4,6 +4,7 @@ const resParams = require('../config/params');
 const PaginationHelper = require('../helpers/PaginationHelper');
 const ErrorHelper = require('../helpers/ErrorHelper');
 const QuestionModel = require('../models/questions');
+const AnswersModel = require('../models/answers');
 
 //default limit of sending back response
 const DEFAULT_LIMIT = 12;
@@ -121,6 +122,38 @@ QuestionController.getAll = (req, res) => {
             res.status(200).send(params);
         }
     });
+}
+
+
+/**
+ * Get result
+ *
+ * @method POST
+ *
+ * @param {String} question
+ *
+ * @returns {Object} resParams
+ *
+ * @author Aabir Hussain <aabir.hussain1@gmail.com>
+ */
+ QuestionController.getResults = async(req, res) => {
+    const params = { ...resParams };
+
+    try {
+        let data = await QuestionModel.find({quiz: req.query.quiz});
+
+        await AnswersModel.attachAnswers(data);
+
+        params.data = data;
+        params.status = true;
+        res.send(params);
+
+    } catch (message) {
+        params.status = false;
+        params.message = 'Error';
+        params.dev_message = message;
+        res.send(params);
+    }
 }
 
 module.exports = QuestionController;
