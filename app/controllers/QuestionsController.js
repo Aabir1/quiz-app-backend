@@ -59,8 +59,10 @@ QuestionController.getByQuiz = (req, res) => {
     const limit = Number(req.query.limit) || DEFAULT_LIMIT;
 
     QuestionModel.paginate({
-        quiz: req.query.quiz
+        quiz: req.query.quiz,
     }, {
+        limit: limit,
+        offset: offset,
         sort: { createdAt: -1 },
         lean: true
     }, (err, result) => {

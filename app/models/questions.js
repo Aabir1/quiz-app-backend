@@ -25,6 +25,11 @@ const Questions = new mongoose.Schema({
         required: true,
         maxlength: 256,
     },
+    rightOption: {
+        type: String,
+        required: true,
+        enum: ['optionOne', 'optionTwo', 'optionThree']
+    },
     quiz: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Quiz',
